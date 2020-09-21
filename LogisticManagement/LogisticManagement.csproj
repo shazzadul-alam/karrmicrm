@@ -195,6 +195,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\tbl_CountryController.cs" />
+    <Compile Include="Controllers\ViewSkillController.cs" />
     <Compile Include="Controllers\View_CandidateController.cs" />
     <Compile Include="courierInvoiceDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -314,6 +315,9 @@
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\View_Candidate.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\View_Skill.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ProcV6DataSet.Designer.cs">
@@ -502,6 +506,11 @@
     <Content Include="Views\tbl_Country\Details.cshtml" />
     <Content Include="Views\tbl_Country\Edit.cshtml" />
     <Content Include="Views\tbl_Country\Index.cshtml" />
+    <Content Include="Views\ViewSkill\Create.cshtml" />
+    <Content Include="Views\ViewSkill\Delete.cshtml" />
+    <Content Include="Views\ViewSkill\Details.cshtml" />
+    <Content Include="Views\ViewSkill\Edit.cshtml" />
+    <Content Include="Views\ViewSkill\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

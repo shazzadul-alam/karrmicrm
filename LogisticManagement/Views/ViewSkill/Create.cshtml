@@ -1,0 +1,147 @@
+﻿@*@model LogisticManagement.Models.tbl_Skill
+
+    @{
+        ViewBag.Title = "Create";
+    }
+
+    <h2>Create</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>New Trade</h4>
+            <hr />
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SkillName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SkillName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SkillName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CountryId, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+
+
+
+@{
+    ViewBag.Title = "Add New Trade";
+}
+
+<div class="row">
+    <div class="col-sm-12" style="border-bottom: 1px solid #c8c8c8;">
+        <h3 style="text-align: center;" class="heading_title">Create Trade</h3>
+    </div>
+    <hr />
+    <div class="col-md-4" style="margin-top:20px;"></div>
+    <div class="col-md-4" style="margin-top:20px;">
+        <div class="col-md-12">
+            <label class="control-label col-md-12">Trade Name</label><br />
+            <input type="text" id="tradeName" name="tradeName" class="form-control"><br />
+
+            <label class="control-label col-md-12">Country</label><br />
+            @Html.DropDownList("CountryId", new SelectList(ViewBag.Country, "CountryId", "CountryName"), new { @class = "form-control" })
+
+            <div class="form-group">
+                <div id="submitButtonDiv" style="margin-top:17px;">
+                    <input type="button" value="Add New Trade" class="btn btn-primary" onclick="submitForm()" style="margin-top: 30px;" />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-12">
+            <br /> <br />
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    function checkValidation() {
+        var errMsg = "";
+        var tradeName = $("#tradeName").val();
+        if (tradeName == "") {
+            errMsg += "Input Trade properly. \n";
+        }
+        return errMsg;
+    }
+
+    function disableSubmitButton() {
+        document.getElementById("submitButtonDiv").innerHTML = '<input type="button" class="btn btn-danger" value="Processing...">';
+    }
+    function enableSubmitButton() {
+        document.getElementById("submitButtonDiv").innerHTML = '<input type="button" class="btn btn-success" value="Add New Trade" onclick="submitForm()">';
+    }
+
+    function submitForm() {
+        var errMsg = checkValidation();
+
+        if (errMsg == "") {
+            var tradeName = $("#tradeName").val();
+            var countryId = document.getElementById("CountryId").value;
+          
+            disableSubmitButton();
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SubmitNewTrade", "ViewSkill")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ "tradeName": tradeName, "countryId": countryId, }),
+                dataType: "json",
+                success: function (data) {
+
+                    var error = data.errdata;
+                    if (error == 0) {
+                        swal({
+                            title: data.result,
+                            text: data.Msg,
+                            type: "success",
+                            confirmButtonText: "OK",
+                            closeOnConfirm: false
+                        },
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                document.location.reload(true);
+                            }
+                        });
+                    } else {
+                        swal(data.result, data.Msg, "error");
+                        enableSubmitButton();
+                    }
+                }
+            });
+        } else {
+            swal("Validation Error!", errMsg, "warning");
+        }
+    }
+
+</script>
+
+
+

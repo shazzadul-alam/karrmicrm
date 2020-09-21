@@ -1,0 +1,80 @@
+﻿@model LogisticManagement.Models.View_Skill
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>View_Skill</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SkillName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SkillName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SkillOrder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SkillOrder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SkillStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SkillStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountryId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryShortName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountryShortName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountryStatus)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

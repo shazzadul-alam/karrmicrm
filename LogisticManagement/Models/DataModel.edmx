@@ -159,6 +159,23 @@ warning 6002: The table/view 'db_karrmi.dbo.View_Candidate' does not have a prim
           <Property Name="JobCountryName" Type="varchar" MaxLength="100" />
           <Property Name="JobCountryShortName" Type="varchar" MaxLength="10" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'db_karrmi.dbo.View_Skill' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_Skill">
+          <Key>
+            <PropertyRef Name="AutoId" />
+            <PropertyRef Name="SkillId" />
+          </Key>
+          <Property Name="AutoId" Type="int" Nullable="false" />
+          <Property Name="SkillId" Type="int" Nullable="false" />
+          <Property Name="SkillName" Type="varchar" MaxLength="100" />
+          <Property Name="SkillOrder" Type="int" />
+          <Property Name="SkillStatus" Type="int" />
+          <Property Name="CountryId" Type="int" />
+          <Property Name="CountryName" Type="varchar" MaxLength="100" />
+          <Property Name="CountryShortName" Type="varchar" MaxLength="10" />
+          <Property Name="CountryStatus" Type="int" />
+        </EntityType>
         <EntityContainer Name="logisticmgtModelStoreContainer">
           <EntitySet Name="tbl_201_User" EntityType="Self.tbl_201_User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_Candidate" EntityType="Self.tbl_Candidate" Schema="dbo" store:Type="Tables" />
@@ -200,6 +217,19 @@ warning 6002: The table/view 'db_karrmi.dbo.View_Candidate' does not have a prim
     [View_Candidate].[JobCountryName] AS [JobCountryName], 
     [View_Candidate].[JobCountryShortName] AS [JobCountryShortName]
     FROM [dbo].[View_Candidate] AS [View_Candidate]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_Skill" EntityType="Self.View_Skill" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Skill].[AutoId] AS [AutoId], 
+    [View_Skill].[SkillId] AS [SkillId], 
+    [View_Skill].[SkillName] AS [SkillName], 
+    [View_Skill].[SkillOrder] AS [SkillOrder], 
+    [View_Skill].[SkillStatus] AS [SkillStatus], 
+    [View_Skill].[CountryId] AS [CountryId], 
+    [View_Skill].[CountryName] AS [CountryName], 
+    [View_Skill].[CountryShortName] AS [CountryShortName], 
+    [View_Skill].[CountryStatus] AS [CountryStatus]
+    FROM [dbo].[View_Skill] AS [View_Skill]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -268,6 +298,7 @@ warning 6002: The table/view 'db_karrmi.dbo.View_Candidate' does not have a prim
           <EntitySet Name="tbl_201_User" EntityType="logisticmgtModel.tbl_201_User" />
           <EntitySet Name="tbl_Stakeholder" EntityType="logisticmgtModel.tbl_Stakeholder" />
           <EntitySet Name="tbl_StakeholderType" EntityType="logisticmgtModel.tbl_StakeholderType" />
+          <EntitySet Name="View_Skill" EntityType="logisticmgtModel.View_Skill" />
           </EntityContainer>
         <ComplexType Name="proc_ViewSaleTemp_Result">
           <Property Type="Int32" Name="AutoId" Nullable="false" />
@@ -1266,6 +1297,21 @@ warning 6002: The table/view 'db_karrmi.dbo.View_Candidate' does not have a prim
           <Property Name="InsertedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="ClientId" Type="Int32" />
         </EntityType>
+        <EntityType Name="View_Skill">
+          <Key>
+            <PropertyRef Name="AutoId" />
+            <PropertyRef Name="SkillId" />
+          </Key>
+          <Property Name="AutoId" Type="Int32" Nullable="false" />
+          <Property Name="SkillId" Type="Int32" Nullable="false" />
+          <Property Name="SkillName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SkillOrder" Type="Int32" />
+          <Property Name="SkillStatus" Type="Int32" />
+          <Property Name="CountryId" Type="Int32" />
+          <Property Name="CountryName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CountryShortName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CountryStatus" Type="Int32" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1430,6 +1476,21 @@ warning 6002: The table/view 'db_karrmi.dbo.View_Candidate' does not have a prim
                 <ScalarProperty Name="InsertedBy" ColumnName="InsertedBy" />
                 <ScalarProperty Name="StakeHolderTypeName" ColumnName="StakeHolderTypeName" />
                 <ScalarProperty Name="StakeHolderTypeId" ColumnName="StakeHolderTypeId" />
+                <ScalarProperty Name="AutoId" ColumnName="AutoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Skill">
+            <EntityTypeMapping TypeName="logisticmgtModel.View_Skill">
+              <MappingFragment StoreEntitySet="View_Skill">
+                <ScalarProperty Name="CountryStatus" ColumnName="CountryStatus" />
+                <ScalarProperty Name="CountryShortName" ColumnName="CountryShortName" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="SkillStatus" ColumnName="SkillStatus" />
+                <ScalarProperty Name="SkillOrder" ColumnName="SkillOrder" />
+                <ScalarProperty Name="SkillName" ColumnName="SkillName" />
+                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
                 <ScalarProperty Name="AutoId" ColumnName="AutoId" />
               </MappingFragment>
             </EntityTypeMapping>

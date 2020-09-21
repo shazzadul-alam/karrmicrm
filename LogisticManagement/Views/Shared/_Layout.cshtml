@@ -124,9 +124,16 @@
 
         function returnMenu(userTypeId) {
             var menuContent = "";
-            menuContent += '<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Report</a><ul class="dropdown-menu">';
+            menuContent += '<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Backend Data</a>';
+            menuContent += '<ul class="dropdown-menu">';
+            menuContent += '<li>@Html.ActionLink("Manage Trade", "Index", "ViewSkill")</li>';
+            menuContent += '<li>@Html.ActionLink("Trade", "Index", "ViewSkill")</li>';
+            menuContent += '</ul></li>';
+
+            menuContent += '<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Report</a>';
+            menuContent += '<ul class="dropdown-menu">';
             menuContent += '<li>@Html.ActionLink("Candidate Data", "Index", "View_Candidate")</li>';
-            menuContent += '</ul ></li >';
+            menuContent += '</ul></li>';
             //if (userTypeId == 1) {
 
             //}

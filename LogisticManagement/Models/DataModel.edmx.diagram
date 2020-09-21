@@ -16,6 +16,7 @@
         <EntityTypeShape EntityType="logisticmgtModel.tbl_201_User" Width="1.5" PointX="0.75" PointY="7.75" />
         <EntityTypeShape EntityType="logisticmgtModel.tbl_Stakeholder" Width="1.5" PointX="2.75" PointY="7.75" />
         <EntityTypeShape EntityType="logisticmgtModel.tbl_StakeholderType" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="logisticmgtModel.View_Skill" Width="1.5" PointX="7.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -38,6 +38,7 @@ namespace LogisticManagement.Models
         public virtual DbSet<tbl_201_User> tbl_201_User { get; set; }
         public virtual DbSet<tbl_Stakeholder> tbl_Stakeholder { get; set; }
         public virtual DbSet<tbl_StakeholderType> tbl_StakeholderType { get; set; }
+        public virtual DbSet<View_Skill> View_Skill { get; set; }
     
         public virtual ObjectResult<proc_ViewSaleTemp_Result> proc_ViewSaleTemp()
         {

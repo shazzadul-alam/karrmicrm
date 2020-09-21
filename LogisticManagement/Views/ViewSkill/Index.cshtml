@@ -1,0 +1,59 @@
+﻿@model IEnumerable<LogisticManagement.Models.View_Skill>
+
+@{
+    ViewBag.Title = "Trade List";
+}
+
+<h2>Trade List</h2>
+
+<p>
+    @Html.ActionLink("Add New Trade", "Create")
+</p>
+<table id="example" class="display nowrap" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SkillName)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.CountryName)
+            </th>
+          
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SkillName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CountryName)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.SkillId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.SkillId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.SkillId })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#example').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel'
+            ]
+        });
+    });
+</script>

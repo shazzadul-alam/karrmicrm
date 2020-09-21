@@ -1,0 +1,74 @@
+﻿@model LogisticManagement.Models.View_Skill
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>View_Skill</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SkillName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SkillName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SkillOrder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SkillOrder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SkillStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SkillStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountryId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryShortName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountryShortName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CountryStatus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
