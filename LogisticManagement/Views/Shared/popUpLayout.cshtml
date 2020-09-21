@@ -1,0 +1,312 @@
+﻿
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<head>
+    <title></title>
+    <style>
+
+        .dialog {
+            background: #DF314D;
+            position: absolute;
+            width: 240px;
+            height: 220px;
+            left: -240px;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+    <script type="text/javascript">
+
+
+        function loadAllOnloadFunctions() {
+            document.getElementById("dialog").innerHTML = "Please Check Everything";
+        }
+
+
+        function abc() {
+
+           
+                document.getElementById("draftDiv").innerHTML = 0;
+
+                document.getElementById("inELSDiv").innerHTML = 0;
+
+                document.getElementById("wfrDiv").innerHTML = 0;
+
+                document.getElementById("wfreDiv").innerHTML = 0;
+
+                document.getElementById("rpdDiv").innerHTML = 0;
+
+                document.getElementById("pnaDiv").innerHTML = 0;
+
+                document.getElementById("rwrDiv").innerHTML = 0;
+
+                document.getElementById("wflDiv").innerHTML = 0;
+
+                document.getElementById("wfcDiv").innerHTML = 0;
+
+                document.getElementById("eaaDiv").innerHTML = 0;
+
+            document.getElementById("inQcDiv").innerHTML = 0;
+
+            document.getElementById("dialog").innerHTML = document.getElementById("callTagDiv").innerHTML
+
+
+            $(function () {
+                $("#dialog").dialog({
+                    position: [10, 50],
+                    height: 550,
+                    width: 220,
+                    //width: "auto"
+                    //modal : true,
+                    //close: function () { $(this).remove() },
+                    resizable: false,
+                    //position: fixed,
+                    //dialogClass: 'info',
+                    //show: { effect: "blind", duration: 1000 },
+                    //hide: {effect: "explode", duration: 1000 },
+                    //draggable: true,
+                });
+
+                //$("#jobInfo").dialog({
+                //    position: [10, 60],
+                //    height: 200,
+                //    width: 220,
+                //    resizable: false,
+                //});
+            });
+        }
+
+        function loadDashBoardCallInfo() {
+            var x = "";
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("LoadCallTagTAT", "DashBoard")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ "Year": "2017", "MonthNumber": "0", "WeekInMonth": "0", "Day": "0", "WarrantyStatus": "All" }),
+                dataType: "json",
+                success: function (data) {
+
+                    $.each(data, function (index, value) {
+                        var callTag = value.CallTag;
+                        if (callTag == "DRAFT") {
+                            document.getElementById("draftDiv").innerHTML = value.Total;
+                        } else if (callTag == "In ELS") {
+                            document.getElementById("inELSDiv").innerHTML = value.Total;
+                        } else if (callTag == "WFR") {
+                            document.getElementById("wfrDiv").innerHTML = value.Total;
+                        } else if (callTag == "WFRE") {
+                            document.getElementById("wfreDiv").innerHTML = value.Total;
+                        } else if (callTag == "PCD") {
+                            document.getElementById("rpdDiv").innerHTML = value.Total;
+                        } else if (callTag == "PNA") {
+                            document.getElementById("pnaDiv").innerHTML = value.Total;
+                        } else if (callTag == "RWR") {
+                            document.getElementById("rwrDiv").innerHTML = value.Total;
+                        } else if (callTag == "WFL") {
+                            document.getElementById("wflDiv").innerHTML = value.Total;
+                        } else if (callTag == "WFC") {
+                            document.getElementById("wfcDiv").innerHTML = value.Total;
+                        } else if (callTag == "EAA") {
+                            document.getElementById("eaaDiv").innerHTML = value.Total;
+                        } else if (callTag == "In QC") {
+                            document.getElementById("inQcDiv").innerHTML = value.Total;
+                        }
+                    });
+
+
+                    //document.getElementById("").innerHTML = value.wfr;
+                    //document.getElementById("").innerHTML = value.wfre;
+
+                    //document.getElementById("").innerHTML = value.pna;
+                    //document.getElementById("").innerHTML = value.wfl;
+                    //document.getElementById("").innerHTML = value.wfc;
+
+
+                    //document.getElementById("").innerHTML = value.eaa;
+                    //document.getElementById("").innerHTML = value.inQc;
+                    //document.getElementById("").innerHTML = value.rwr;
+                    //document.getElementById("").innerHTML = value.rpd;
+
+
+                    document.getElementById("dialog").innerHTML = document.getElementById("callTagDiv").innerHTML
+                    reloadPageNow();
+                }
+            });
+        }
+
+
+
+
+
+
+        @*function loadDashBoardCallInfo() {
+            var x = "";
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("LoadCallTagASCWise", "Dashboard")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ "X": x }),
+                dataType: "json",
+                success: function (data) {
+                    $.each(data, function (index, value) {
+                        //document.getElementById("totalCallReceiveDiv").innerHTML = value.totalReceived;
+                        //document.getElementById("totalRepairedDiv").innerHTML = value.totalRepaired;
+                        //document.getElementById("totalPendingDiv").innerHTML = value.totalPending;
+
+                        document.getElementById("draftDiv").innerHTML = value.draft;
+                        document.getElementById("inELSDiv").innerHTML = value.inELS;
+                        document.getElementById("wfrDiv").innerHTML = value.wfr;
+                        document.getElementById("wfreDiv").innerHTML = value.wfre;
+
+                        document.getElementById("pnaDiv").innerHTML = value.pna;
+                        document.getElementById("wflDiv").innerHTML = value.wfl;
+                        document.getElementById("wfcDiv").innerHTML = value.wfc;
+
+
+                        document.getElementById("eaaDiv").innerHTML = value.eaa;
+                        document.getElementById("inQcDiv").innerHTML = value.inQc;
+                        document.getElementById("rwrDiv").innerHTML = value.rwr;
+                        document.getElementById("rpdDiv").innerHTML = value.rpd;
+
+
+                        document.getElementById("dialog").innerHTML = document.getElementById("callTagDiv").innerHTML
+                        reloadPageNow();
+                    });
+                }
+            });
+        }*@
+
+        $(document).ready(function () { // JQuery not loaded here, $ is undefined
+            //loadDashBoardCallInfo();
+            abc();
+        });
+
+        function reloadPageNow() {
+            setTimeout(loadDashBoardCallInfo, 60000);
+        }
+
+
+        @*function fetchJobInfo() {
+            var jobNumber = $("#jobNumberField").val();
+            if (jobNumber != "") {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("FetchJobInfo", "Dashboard")',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ "jobNumber": jobNumber }),
+                    dataType: "json",
+                    success: function (data) {
+                        $("#alterJobNumberField").val(data);
+                    }
+                });
+            } else {
+                $("#alterJobNumberField").val("Input Job No Properly");
+            }
+
+        }*@
+    </script>
+</head>
+
+<body>
+  
+    @*<div id="jobInfo" title="Job Info">
+        <label class="form-label">Input Job No</label>
+        <input type="text" class="form-input-box" name="jobNumberField" id="jobNumberField" style=" font-size: 13px !important;" required />
+
+        <input type="button" class="fetchButton" value="Submit" onclick="fetchJobInfo()" style="float:right; font-size: 13px !important;" />
+
+        <label class="form-label">Alternet Job No</label>
+        <input type="text" class="form-input-box" name="alterJobNumberField" id="alterJobNumberField" readonly />
+
+    </div>*@
+
+    <div id="dialog" title="Pending Job">
+    </div>
+
+
+    <div id="callTagDiv" style="display:none;">
+       <ul style="list-style:none; padding-left:0px; font-size:16px; font-family:Calibri;">
+           <li>
+               <a href="/JobOperation/ELSAssign">
+                   <span class="label label-sm label-danger liStyle" id="draftDiv">0</span> <span class="taskPadding">In DRAFT</span>
+               </a>
+           </li>
+           <li>
+               <a href="/JobOperation/DiagonosisCreate">
+                   <span class="label label-sm label-danger liStyle" id="inELSDiv"></span> <span class="taskPadding">In ELS</span>
+               </a>
+            </li>
+           <li> 
+               <a href="/JobOperation/Assign">
+                   <span class="label label-sm label-danger liStyle" id="wfrDiv">0</span> <span class="taskPadding">In WFR</span>
+              </a>
+           </li>
+           <li>
+               <a href="/JobOperation/RepairCreate">
+                   <span class="label label-sm label-danger liStyle" id="wfreDiv">0</span> <span class="taskPadding">In WFRE</span>
+              </a>
+           </li>
+
+           <li>
+               <a href="/JobOperation/RepairCreate">
+                   <span class="label label-sm label-danger liStyle" id="pnaDiv">0</span> <span class="taskPadding">In PNA</span>
+               </a>
+           </li>
+           <li>
+               <a href="/JobOperation/RepairCreate">
+                   <span class="label label-sm label-danger liStyle" id="wflDiv">0</span> <span class="taskPadding">In WFS-L</span>
+               </a>
+           </li>
+           <li>
+               <a href="/JobOperation/RepairCreate">
+                   <span class="label label-sm label-danger liStyle" id="wfcDiv">0</span> <span class="taskPadding">In WFS-C</span>
+               </a>
+           </li>
+
+           <li>
+               <a href="/JobOperation/EstimatedApproval">
+                   <span class="label label-sm label-danger liStyle" id="eaaDiv">0</span> <span class="taskPadding">In EAA</span>
+               </a>
+           </li>
+           <li>
+               <a href="/JobOperation/QcCreate">
+                   <span class="label label-sm label-danger liStyle" id="inQcDiv">0</span> <span class="taskPadding">In QC</span>
+               </a>
+           </li>
+
+
+           <li>
+               <a href="/JobOperation/EstimatedApproval">
+                   <span class="label label-sm label-danger liStyle" id="rwrDiv">0</span> <span class="taskPadding">In RWR</span>
+               </a>
+           </li>
+           <li>
+               <a href="/JobOperation/QcCreate">
+                   <span class="label label-sm label-danger liStyle" id="rpdDiv">0</span> <span class="taskPadding">In PCD</span>
+               </a>
+           </li>
+
+
+       </ul>     
+        
+    </div>
+
+
+</body>
+</html>
+
+<div class="container-fluid body-content">
+    @*<div class="page-top-height"></div>*@
+    @RenderBody()
+</div>
+
+<script>
+    
+
+</script>

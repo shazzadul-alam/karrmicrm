@@ -1,0 +1,1460 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="logisticmgtModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_201_User">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="AutoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="StakeHolderUniqueCode" Type="varchar" MaxLength="20" />
+          <Property Name="UserRoleId" Type="int" />
+          <Property Name="UserStatus" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Candidate">
+          <Key>
+            <PropertyRef Name="CandidateId" />
+          </Key>
+          <Property Name="AutoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CandidateId" Type="int" Nullable="false" />
+          <Property Name="CandidateCode" Type="varchar" MaxLength="10" />
+          <Property Name="CandidateName" Type="varchar" MaxLength="100" />
+          <Property Name="CandidateContactNo" Type="varchar" MaxLength="20" />
+          <Property Name="CandidateAddress" Type="varchar" MaxLength="255" />
+          <Property Name="CandidateDOB" Type="datetime" />
+          <Property Name="CandidateGender" Type="char" MaxLength="1" />
+          <Property Name="CandidateGuardianName" Type="varchar" MaxLength="100" />
+          <Property Name="CandidateGurdianContact" Type="varchar" MaxLength="20" />
+          <Property Name="CandidateImageRef" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tbl_CandidateDocument">
+          <Key>
+            <PropertyRef Name="AutoId" />
+          </Key>
+          <Property Name="AutoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CandidateId" Type="int" Nullable="false" />
+          <Property Name="DocumentId" Type="int" />
+          <Property Name="DocumentKey" Type="varchar" MaxLength="50" />
+          <Property Name="DocumentExpiryDate" Type="datetime" />
+          <Property Name="DocumentImageRef" Type="varchar" MaxLength="100" />
+          <Property Name="DocumentOrgImageRef" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tbl_CandidateJobHistory">
+          <Key>
+            <PropertyRef Name="AutoId" />
+          </Key>
+          <Property Name="AutoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CandidateId" Type="int" Nullable="false" />
+          <Property Name="JobTrade" Type="varchar" MaxLength="50" />
+          <Property Name="JobDuration" Type="int" />
+          <Property Name="JobCompany" Type="varchar" MaxLength="100" />
+          <Property Name="CountryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_CandidateSkill">
+          <Key>
+            <PropertyRef Name="AutoId" />
+          </Key>
+          <Property Name="AutoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CandidateId" Type="int" Nullable="false" />
+          <Property Name="SkillId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Country">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="AutoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryId" Type="int" Nullable="false" />
+          <Property Name="CountryName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CountryShortName" Type="varchar" MaxLength="10" />
+          <Property Name="CountryStatus" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Document">
+          <Key>
+            <PropertyRef Name="DocumentId" />
+          </Key>
+          <Property Name="AutoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentId" Type="int" Nullable="false" />
+          <Property Name="DocumentName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbl_Skill">
+          <Key>
+            <PropertyRef Name="SkillId" />
+          </Key>
+          <Property Name="AutoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SkillId" Type="int" Nullable="false" />
+          <Property Name="SkillName" Type="varchar" MaxLength="100" />
+          <Property Name="SkillOrder" Type="int" />
+          <Property Name="SkillStatus" Type="int" />
+          <Property Name="CountryId" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_Stakeholder">
+          <Key>
+            <PropertyRef Name="StakeHolderUniqueCode" />
+          </Key>
+          <Property Name="AutoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StakeHolderUniqueCode" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="ContactNo" Type="varchar" MaxLength="20" />
+          <Property Name="Dob" Type="date" />
+          <Property Name="Gender" Type="varchar" MaxLength="10" />
+          <Property Name="GuardianFullName" Type="varchar" MaxLength="50" />
+          <Property Name="GuardianContact" Type="varchar" MaxLength="30" />
+          <Property Name="RelationTypeId" Type="int" />
+          <Property Name="StakeHolderTypeId" Type="int" />
+          <Property Name="RefStakeHolderUniqueCode" Type="varchar" MaxLength="20" />
+          <Property Name="InsertedBy" Type="varchar" MaxLength="20" />
+          <Property Name="ClientId" Type="int" />
+          <Property Name="Remarks" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tbl_StakeholderType">
+          <Key>
+            <PropertyRef Name="StakeHolderTypeId" />
+          </Key>
+          <Property Name="AutoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StakeHolderTypeId" Type="int" Nullable="false" />
+          <Property Name="StakeHolderTypeName" Type="varchar" MaxLength="30" />
+          <Property Name="InsertedBy" Type="varchar" MaxLength="20" />
+          <Property Name="ClientId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'db_karrmi.dbo.View_Candidate' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="View_Candidate">
+          <Key>
+            <PropertyRef Name="AutoId" />
+            <PropertyRef Name="CandidateId" />
+          </Key>
+          <Property Name="AutoId" Type="int" Nullable="false" />
+          <Property Name="CandidateId" Type="int" Nullable="false" />
+          <Property Name="CandidateCode" Type="varchar" MaxLength="10" />
+          <Property Name="CandidateName" Type="varchar" MaxLength="100" />
+          <Property Name="CandidateContactNo" Type="varchar" MaxLength="20" />
+          <Property Name="CandidateAddress" Type="varchar" MaxLength="255" />
+          <Property Name="CandidateDOB" Type="datetime" />
+          <Property Name="CandidateGender" Type="char" MaxLength="1" />
+          <Property Name="CandidateGuardianName" Type="varchar" MaxLength="100" />
+          <Property Name="CandidateGurdianContact" Type="varchar" MaxLength="20" />
+          <Property Name="CandidateImageRef" Type="varchar" MaxLength="100" />
+          <Property Name="JobTrade" Type="varchar" MaxLength="50" />
+          <Property Name="JobDuration" Type="int" />
+          <Property Name="JobCompany" Type="varchar" MaxLength="100" />
+          <Property Name="SkillId" Type="int" />
+          <Property Name="SkillName" Type="varchar" MaxLength="100" />
+          <Property Name="DocumentId" Type="int" />
+          <Property Name="DocumentKey" Type="varchar" MaxLength="50" />
+          <Property Name="DocumentExpiryDate" Type="datetime" />
+          <Property Name="DocumentImageRef" Type="varchar" MaxLength="100" />
+          <Property Name="DocumentOrgImageRef" Type="varchar" MaxLength="100" />
+          <Property Name="DocumentName" Type="varchar" MaxLength="50" />
+          <Property Name="CountryId" Type="int" />
+          <Property Name="CountryName" Type="varchar" MaxLength="100" />
+          <Property Name="CountryShortName" Type="varchar" MaxLength="10" />
+          <Property Name="JobCountryName" Type="varchar" MaxLength="100" />
+          <Property Name="JobCountryShortName" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityContainer Name="logisticmgtModelStoreContainer">
+          <EntitySet Name="tbl_201_User" EntityType="Self.tbl_201_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Candidate" EntityType="Self.tbl_Candidate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CandidateDocument" EntityType="Self.tbl_CandidateDocument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CandidateJobHistory" EntityType="Self.tbl_CandidateJobHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_CandidateSkill" EntityType="Self.tbl_CandidateSkill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Country" EntityType="Self.tbl_Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Document" EntityType="Self.tbl_Document" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Skill" EntityType="Self.tbl_Skill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_Stakeholder" EntityType="Self.tbl_Stakeholder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_StakeholderType" EntityType="Self.tbl_StakeholderType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_Candidate" EntityType="Self.View_Candidate" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Candidate].[AutoId] AS [AutoId], 
+    [View_Candidate].[CandidateId] AS [CandidateId], 
+    [View_Candidate].[CandidateCode] AS [CandidateCode], 
+    [View_Candidate].[CandidateName] AS [CandidateName], 
+    [View_Candidate].[CandidateContactNo] AS [CandidateContactNo], 
+    [View_Candidate].[CandidateAddress] AS [CandidateAddress], 
+    [View_Candidate].[CandidateDOB] AS [CandidateDOB], 
+    [View_Candidate].[CandidateGender] AS [CandidateGender], 
+    [View_Candidate].[CandidateGuardianName] AS [CandidateGuardianName], 
+    [View_Candidate].[CandidateGurdianContact] AS [CandidateGurdianContact], 
+    [View_Candidate].[CandidateImageRef] AS [CandidateImageRef], 
+    [View_Candidate].[JobTrade] AS [JobTrade], 
+    [View_Candidate].[JobDuration] AS [JobDuration], 
+    [View_Candidate].[JobCompany] AS [JobCompany], 
+    [View_Candidate].[SkillId] AS [SkillId], 
+    [View_Candidate].[SkillName] AS [SkillName], 
+    [View_Candidate].[DocumentId] AS [DocumentId], 
+    [View_Candidate].[DocumentKey] AS [DocumentKey], 
+    [View_Candidate].[DocumentExpiryDate] AS [DocumentExpiryDate], 
+    [View_Candidate].[DocumentImageRef] AS [DocumentImageRef], 
+    [View_Candidate].[DocumentOrgImageRef] AS [DocumentOrgImageRef], 
+    [View_Candidate].[DocumentName] AS [DocumentName], 
+    [View_Candidate].[CountryId] AS [CountryId], 
+    [View_Candidate].[CountryName] AS [CountryName], 
+    [View_Candidate].[CountryShortName] AS [CountryShortName], 
+    [View_Candidate].[JobCountryName] AS [JobCountryName], 
+    [View_Candidate].[JobCountryShortName] AS [JobCountryShortName]
+    FROM [dbo].[View_Candidate] AS [View_Candidate]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="logisticmgtModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="dataEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="proc_ViewSaleTemp" ReturnType="Collection(logisticmgtModel.proc_ViewSaleTemp_Result)" />
+          <FunctionImport Name="proc_View_Sale" ReturnType="Collection(logisticmgtModel.proc_View_Sale_Result)" />
+          <FunctionImport Name="proc_ViewSaleV1" ReturnType="Collection(logisticmgtModel.proc_ViewSaleV1_Result)" />
+          <FunctionImport Name="proc_ViewSaleV2" ReturnType="Collection(logisticmgtModel.proc_ViewSaleV2_Result)" />
+          <FunctionImport Name="proc_ViewSaleV3" ReturnType="Collection(logisticmgtModel.proc_ViewSaleV3_Result)" />
+          <FunctionImport Name="proc_ViewSaleV4" ReturnType="Collection(logisticmgtModel.proc_ViewSaleV4_Result)" />
+          <FunctionImport Name="proc_ViewSaleV5" ReturnType="Collection(logisticmgtModel.proc_ViewSaleV5_Result)" />
+          <FunctionImport Name="proc_ViewSaleV6" ReturnType="Collection(logisticmgtModel.proc_ViewSaleV6_Result)" />
+          <FunctionImport Name="proc_CustomDashboard" ReturnType="Collection(logisticmgtModel.proc_CustomDashboard_Result)">
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="proc_CustomDashboardV2" ReturnType="Collection(logisticmgtModel.proc_CustomDashboardV2_Result)">
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="proc_CustomDashboardV3" ReturnType="Collection(logisticmgtModel.proc_CustomDashboardV3_Result)">
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="proc_CustomDashboardV4" ReturnType="Collection(logisticmgtModel.proc_CustomDashboardV4_Result)">
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="proc_IESummery" ReturnType="Collection(logisticmgtModel.proc_IESummery_Result)">
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="proc_CustomDashboardV6" ReturnType="Collection(logisticmgtModel.proc_CustomDashboardV5_Result)">
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="proc_SOBreakdownByDateRange" ReturnType="Collection(logisticmgtModel.proc_SOBreakdownByDateRange_Result)">
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="proc_TransactionByDateRange" ReturnType="Collection(logisticmgtModel.proc_TransactionByDateRange_Result)">
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="proc_CustomDashboardV5" ReturnType="Collection(logisticmgtModel.proc_CustomDashboardV6_Result)">
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="proc_CustomDashboardV7" ReturnType="Collection(logisticmgtModel.proc_CustomDashboardV7_Result)">
+            <Parameter Name="startDate" Mode="In" Type="DateTime" />
+            <Parameter Name="endDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="proc_ViewConsumerOrderStatusPivotReport" ReturnType="Collection(logisticmgtModel.proc_ViewConsumerOrderStatusPivotReport_Result)" />
+          <FunctionImport Name="proc1_ViewConsumerOrderStatusPivotReport" ReturnType="Collection(logisticmgtModel.proc1_ViewConsumerOrderStatusPivotReport_Result)" />
+          <EntitySet Name="tbl_Candidate" EntityType="logisticmgtModel.tbl_Candidate" />
+          <EntitySet Name="tbl_CandidateDocument" EntityType="logisticmgtModel.tbl_CandidateDocument" />
+          <EntitySet Name="tbl_CandidateJobHistory" EntityType="logisticmgtModel.tbl_CandidateJobHistory" />
+          <EntitySet Name="tbl_CandidateSkill" EntityType="logisticmgtModel.tbl_CandidateSkill" />
+          <EntitySet Name="tbl_Country" EntityType="logisticmgtModel.tbl_Country" />
+          <EntitySet Name="tbl_Document" EntityType="logisticmgtModel.tbl_Document" />
+          <EntitySet Name="tbl_Skill" EntityType="logisticmgtModel.tbl_Skill" />
+          <EntitySet Name="View_Candidate" EntityType="logisticmgtModel.View_Candidate" />
+          <EntitySet Name="tbl_201_User" EntityType="logisticmgtModel.tbl_201_User" />
+          <EntitySet Name="tbl_Stakeholder" EntityType="logisticmgtModel.tbl_Stakeholder" />
+          <EntitySet Name="tbl_StakeholderType" EntityType="logisticmgtModel.tbl_StakeholderType" />
+          </EntityContainer>
+        <ComplexType Name="proc_ViewSaleTemp_Result">
+          <Property Type="Int32" Name="AutoId" Nullable="false" />
+          <Property Type="String" Name="SaleOrderNo" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="RelatedSaleReqNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="ConsumerCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactNo" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="Dob" Nullable="true" />
+          <Property Type="DateTime" Name="SaleOrderPlaceDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="SaleOrderProductCompletionDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DeliveryDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="SaleOrderStatus" Nullable="true" />
+          <Property Type="String" Name="ProcessStatuName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ProcessStatusUniqeCode" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="SaleBillAmount" Nullable="true" />
+          <Property Type="String" Name="ReferalResourceUniqueCode" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ServiceId" Nullable="true" />
+          <Property Type="String" Name="ServiceName" Nullable="true" MaxLength="20" />
+          <Property Type="Double" Name="ServiceCharge" Nullable="true" />
+          <Property Type="Int32" Name="SupplierId" Nullable="true" />
+          <Property Type="String" Name="SupplierName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SupplierShortName" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="SupplierStatus" Nullable="true" />
+          <Property Type="String" Name="InsertedBy" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="InsertedByFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="InsertedByLastName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ProductCode" Nullable="true" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductUniqueCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductDescription" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ProductGroupCode" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="ProductSizeId" Nullable="true" />
+          <Property Type="Int32" Name="ProductColorId" Nullable="true" />
+          <Property Type="Int32" Name="ProductTypeId" Nullable="true" />
+          <Property Type="Int32" Name="ProductParentId" Nullable="true" />
+          <Property Type="String" Name="ParentProductName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="SaleOrderedQty" Nullable="true" />
+          <Property Type="Double" Name="SaleUnitPrice" Nullable="true" />
+          <Property Type="Int32" Name="DeliveredQty" Nullable="true" />
+          <Property Type="String" Name="RelatedRefCode" Nullable="true" />
+          <Property Type="String" Name="ProductRemarks" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="SaleProductColorId" Nullable="true" />
+          <Property Type="String" Name="ProductSize" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ProductColorName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="proc_View_Sale_Result">
+          <Property Type="Int32" Name="AutoId" Nullable="true" />
+          <Property Type="String" Name="SaleOrderNo" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="RelatedSaleReqNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="ConsumerCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactNo" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="Dob" Nullable="true" />
+          <Property Type="DateTime" Name="SaleOrderPlaceDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="SaleOrderProductCompletionDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DeliveryDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="SaleOrderStatus" Nullable="true" />
+          <Property Type="String" Name="ProcessStatuName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProcessStatusUniqeCode" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="SaleBillAmount" Nullable="true" />
+          <Property Type="String" Name="ReferalResourceUniqueCode" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ServiceId" Nullable="true" />
+          <Property Type="String" Name="ServiceName" Nullable="true" MaxLength="20" />
+          <Property Type="Double" Name="ServiceCharge" Nullable="true" />
+          <Property Type="Int32" Name="SupplierId" Nullable="true" />
+          <Property Type="String" Name="SupplierName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SupplierShortName" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="SupplierStatus" Nullable="true" />
+          <Property Type="String" Name="InsertedBy" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="InsertedByFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="InsertedByLastName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ProductCode" Nullable="true" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductUniqueCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductDescription" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ProductGroupCode" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="ProductSizeId" Nullable="true" />
+          <Property Type="Int32" Name="ProductColorId" Nullable="true" />
+          <Property Type="Int32" Name="ProductTypeId" Nullable="true" />
+          <Property Type="Int32" Name="ProductParentId" Nullable="true" />
+          <Property Type="String" Name="ParentProductName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="SaleOrderedQty" Nullable="true" />
+          <Property Type="Double" Name="SaleUnitPrice" Nullable="true" />
+          <Property Type="Int32" Name="DeliveredQty" Nullable="true" />
+          <Property Type="String" Name="RelatedRefCode" Nullable="true" />
+          <Property Type="String" Name="ProductRemarks" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="SaleProductColorId" Nullable="true" />
+          <Property Type="String" Name="ProductSize" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ProductColorName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ClientId" Nullable="true" />
+          <Property Type="String" Name="ProductBarCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductRelatedChallanId" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="ProductPriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="ShippingCharge" Nullable="true" />
+          <Property Type="Int32" Name="ProductQty" Nullable="true" />
+          <Property Type="Double" Name="PriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="PriceInBDT" Nullable="true" />
+          <Property Type="Double" Name="BkashCharge" Nullable="true" />
+          <Property Type="Double" Name="CalcAmount" Nullable="true" />
+          <Property Type="Double" Name="Weight" Nullable="true" />
+          <Property Type="Double" Name="ExpressRate" Nullable="true" />
+          <Property Type="Double" Name="FinalAmount" Nullable="true" />
+          <Property Type="Double" Name="DiscountAmount" Nullable="true" />
+          <Property Type="Double" Name="PayableAmount" Nullable="true" />
+          <Property Type="Double" Name="SaleConversionRate" Nullable="true" />
+          <Property Type="Double" Name="CustomCharge" Nullable="true" />
+          <Property Type="Double" Name="CourierBillAvarage" Nullable="true" />
+          <Property Type="Int32" Name="UltimatePayableAmount" Nullable="true" />
+          <Property Type="String" Name="PurchaseOrderNo" Nullable="true" MaxLength="20" />
+          <Property Type="Double" Name="PurchaseProductPriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="PurchaseShippingCharge" Nullable="true" />
+          <Property Type="Int32" Name="PurchaseProductQty" Nullable="true" />
+          <Property Type="Double" Name="PurchasePriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="PurchasePriceInBDT" Nullable="true" />
+          <Property Type="Double" Name="PurchaseBkashCharge" Nullable="true" />
+          <Property Type="Double" Name="PurchaseCalcAmount" Nullable="true" />
+          <Property Type="Double" Name="PurchaseWeight" Nullable="true" />
+          <Property Type="Double" Name="PurchaseExpressRate" Nullable="true" />
+          <Property Type="Double" Name="PurchaseFinalAmount" Nullable="true" />
+          <Property Type="Double" Name="PurchaseDiscountAmount" Nullable="true" />
+          <Property Type="Double" Name="PurchasePayableAmount" Nullable="true" />
+          <Property Type="String" Name="RelatedSaleOrderNo" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="proc_ViewSaleV1_Result">
+          <Property Type="Int32" Name="AutoId" Nullable="true" />
+          <Property Type="String" Name="SaleOrderNo" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="RelatedSaleReqNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="ConsumerCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactNo" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="Dob" Nullable="true" />
+          <Property Type="DateTime" Name="SaleOrderPlaceDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="SaleOrderProductCompletionDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DeliveryDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="SaleOrderStatus" Nullable="true" />
+          <Property Type="String" Name="ProcessStatuName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProcessStatusUniqeCode" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="SaleBillAmount" Nullable="true" />
+          <Property Type="String" Name="ReferalResourceUniqueCode" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ServiceId" Nullable="true" />
+          <Property Type="String" Name="ServiceName" Nullable="true" MaxLength="20" />
+          <Property Type="Double" Name="ServiceCharge" Nullable="true" />
+          <Property Type="Int32" Name="SupplierId" Nullable="true" />
+          <Property Type="String" Name="SupplierName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SupplierShortName" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="SupplierStatus" Nullable="true" />
+          <Property Type="String" Name="InsertedBy" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="InsertedByFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="InsertedByLastName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ProductCode" Nullable="true" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductUniqueCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductDescription" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ProductGroupCode" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="ProductSizeId" Nullable="true" />
+          <Property Type="Int32" Name="ProductColorId" Nullable="true" />
+          <Property Type="Int32" Name="ProductTypeId" Nullable="true" />
+          <Property Type="Int32" Name="ProductParentId" Nullable="true" />
+          <Property Type="String" Name="ParentProductName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="SaleOrderedQty" Nullable="true" />
+          <Property Type="Double" Name="SaleUnitPrice" Nullable="true" />
+          <Property Type="Int32" Name="DeliveredQty" Nullable="true" />
+          <Property Type="String" Name="RelatedRefCode" Nullable="true" />
+          <Property Type="String" Name="ProductRemarks" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="SaleProductColorId" Nullable="true" />
+          <Property Type="String" Name="ProductSize" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ProductColorName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ClientId" Nullable="true" />
+          <Property Type="String" Name="ProductBarCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductRelatedChallanId" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="ProductPriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="ShippingCharge" Nullable="true" />
+          <Property Type="Int32" Name="ProductQty" Nullable="true" />
+          <Property Type="Double" Name="PriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="PriceInBDT" Nullable="true" />
+          <Property Type="Double" Name="BkashCharge" Nullable="true" />
+          <Property Type="Double" Name="CalcAmount" Nullable="true" />
+          <Property Type="Double" Name="Weight" Nullable="true" />
+          <Property Type="Double" Name="ExpressRate" Nullable="true" />
+          <Property Type="Double" Name="FinalAmount" Nullable="true" />
+          <Property Type="Double" Name="DiscountAmount" Nullable="true" />
+          <Property Type="Double" Name="PayableAmount" Nullable="true" />
+          <Property Type="Double" Name="SaleConversionRate" Nullable="true" />
+          <Property Type="Double" Name="CustomCharge" Nullable="true" />
+          <Property Type="Double" Name="CourierBillAvarage" Nullable="true" />
+          <Property Type="Int32" Name="UltimatePayableAmount" Nullable="true" />
+          <Property Type="String" Name="PurchaseOrderNo" Nullable="true" MaxLength="20" />
+          <Property Type="Double" Name="PurchaseProductPriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="PurchaseShippingCharge" Nullable="true" />
+          <Property Type="Int32" Name="PurchaseProductQty" Nullable="true" />
+          <Property Type="Double" Name="PurchasePriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="PurchasePriceInBDT" Nullable="true" />
+          <Property Type="Double" Name="PurchaseBkashCharge" Nullable="true" />
+          <Property Type="Double" Name="PurchaseCalcAmount" Nullable="true" />
+          <Property Type="Double" Name="PurchaseWeight" Nullable="true" />
+          <Property Type="Double" Name="PurchaseExpressRate" Nullable="true" />
+          <Property Type="Double" Name="PurchaseFinalAmount" Nullable="true" />
+          <Property Type="Double" Name="PurchaseDiscountAmount" Nullable="true" />
+          <Property Type="Double" Name="PurchasePayableAmount" Nullable="true" />
+          <Property Type="String" Name="RelatedSaleOrderNo" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="TotalPaid" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="proc_ViewSaleV2_Result">
+          <Property Type="Int32" Name="AutoId" Nullable="false" />
+          <Property Type="String" Name="SaleOrderNo" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="RelatedSaleReqNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="ConsumerCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactNo" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="Dob" Nullable="true" />
+          <Property Type="DateTime" Name="SaleOrderPlaceDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="SaleOrderProductCompletionDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DeliveryDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="SaleOrderStatus" Nullable="true" />
+          <Property Type="String" Name="ProcessStatuName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProcessStatusUniqeCode" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="SaleBillAmount" Nullable="true" />
+          <Property Type="String" Name="ReferalResourceUniqueCode" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ServiceId" Nullable="true" />
+          <Property Type="String" Name="ServiceName" Nullable="true" MaxLength="20" />
+          <Property Type="Double" Name="ServiceCharge" Nullable="true" />
+          <Property Type="Int32" Name="SupplierId" Nullable="true" />
+          <Property Type="String" Name="SupplierName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SupplierShortName" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="SupplierStatus" Nullable="true" />
+          <Property Type="String" Name="InsertedBy" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="InsertedByFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="InsertedByLastName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ProductCode" Nullable="true" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductUniqueCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductDescription" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ProductGroupCode" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="ProductSizeId" Nullable="true" />
+          <Property Type="Int32" Name="ProductColorId" Nullable="true" />
+          <Property Type="Int32" Name="ProductTypeId" Nullable="true" />
+          <Property Type="Int32" Name="ProductParentId" Nullable="true" />
+          <Property Type="String" Name="ParentProductName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="SaleOrderedQty" Nullable="true" />
+          <Property Type="Double" Name="SaleUnitPrice" Nullable="true" />
+          <Property Type="Int32" Name="DeliveredQty" Nullable="true" />
+          <Property Type="String" Name="RelatedRefCode" Nullable="true" />
+          <Property Type="String" Name="ProductRemarks" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="SaleProductColorId" Nullable="true" />
+          <Property Type="String" Name="ProductSize" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ProductColorName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ClientId" Nullable="true" />
+          <Property Type="String" Name="ProductBarCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductRelatedChallanId" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="ProductPriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="ShippingCharge" Nullable="true" />
+          <Property Type="Int32" Name="ProductQty" Nullable="true" />
+          <Property Type="Double" Name="PriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="PriceInBDT" Nullable="true" />
+          <Property Type="Double" Name="BkashCharge" Nullable="true" />
+          <Property Type="Double" Name="CalcAmount" Nullable="true" />
+          <Property Type="Double" Name="Weight" Nullable="true" />
+          <Property Type="Double" Name="ExpressRate" Nullable="true" />
+          <Property Type="Double" Name="FinalAmount" Nullable="true" />
+          <Property Type="Double" Name="DiscountAmount" Nullable="true" />
+          <Property Type="Double" Name="PayableAmount" Nullable="true" />
+          <Property Type="Double" Name="SaleConversionRate" Nullable="true" />
+          <Property Type="Double" Name="CustomCharge" Nullable="true" />
+          <Property Type="Double" Name="CourierBillAvarage" Nullable="true" />
+          <Property Type="Int32" Name="UltimatePayableAmount" Nullable="true" />
+          <Property Type="String" Name="PurchaseOrderNo" Nullable="true" MaxLength="20" />
+          <Property Type="Double" Name="PurchaseProductPriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="PurchaseShippingCharge" Nullable="true" />
+          <Property Type="Int32" Name="PurchaseProductQty" Nullable="true" />
+          <Property Type="Double" Name="PurchasePriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="PurchasePriceInBDT" Nullable="true" />
+          <Property Type="Double" Name="PurchaseBkashCharge" Nullable="true" />
+          <Property Type="Double" Name="PurchaseCalcAmount" Nullable="true" />
+          <Property Type="Double" Name="PurchaseWeight" Nullable="true" />
+          <Property Type="Double" Name="PurchaseExpressRate" Nullable="true" />
+          <Property Type="Double" Name="PurchaseFinalAmount" Nullable="true" />
+          <Property Type="Double" Name="PurchaseDiscountAmount" Nullable="true" />
+          <Property Type="Double" Name="PurchasePayableAmount" Nullable="true" />
+          <Property Type="String" Name="RelatedSaleOrderNo" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="TotalPaid" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="proc_ViewSaleV3_Result">
+          <Property Type="Int32" Name="Aging" Nullable="true" />
+          <Property Type="Int32" Name="AutoId" Nullable="false" />
+          <Property Type="String" Name="SaleOrderNo" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="RelatedSaleReqNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="ConsumerCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactNo" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="Dob" Nullable="true" />
+          <Property Type="DateTime" Name="SaleOrderPlaceDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="SaleOrderProductCompletionDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DeliveryDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="SaleOrderStatus" Nullable="true" />
+          <Property Type="String" Name="ProcessStatuName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProcessStatusUniqeCode" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="SaleBillAmount" Nullable="true" />
+          <Property Type="String" Name="ReferalResourceUniqueCode" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ServiceId" Nullable="true" />
+          <Property Type="String" Name="ServiceName" Nullable="true" MaxLength="20" />
+          <Property Type="Double" Name="ServiceCharge" Nullable="true" />
+          <Property Type="Int32" Name="SupplierId" Nullable="true" />
+          <Property Type="String" Name="SupplierName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SupplierShortName" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="SupplierStatus" Nullable="true" />
+          <Property Type="String" Name="InsertedBy" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="InsertedByFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="InsertedByLastName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ProductCode" Nullable="true" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductUniqueCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductDescription" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ProductGroupCode" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="ProductSizeId" Nullable="true" />
+          <Property Type="Int32" Name="ProductColorId" Nullable="true" />
+          <Property Type="Int32" Name="ProductTypeId" Nullable="true" />
+          <Property Type="Int32" Name="ProductParentId" Nullable="true" />
+          <Property Type="String" Name="ParentProductName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="SaleOrderedQty" Nullable="true" />
+          <Property Type="Double" Name="SaleUnitPrice" Nullable="true" />
+          <Property Type="Int32" Name="DeliveredQty" Nullable="true" />
+          <Property Type="String" Name="RelatedRefCode" Nullable="true" />
+          <Property Type="String" Name="ProductRemarks" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="SaleProductColorId" Nullable="true" />
+          <Property Type="String" Name="ProductSize" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ProductColorName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ClientId" Nullable="true" />
+          <Property Type="String" Name="ProductBarCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductRelatedChallanId" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="ProductPriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="ShippingCharge" Nullable="true" />
+          <Property Type="Int32" Name="ProductQty" Nullable="true" />
+          <Property Type="Double" Name="PriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="PriceInBDT" Nullable="true" />
+          <Property Type="Double" Name="BkashCharge" Nullable="true" />
+          <Property Type="Double" Name="CalcAmount" Nullable="true" />
+          <Property Type="Double" Name="Weight" Nullable="true" />
+          <Property Type="Double" Name="ExpressRate" Nullable="true" />
+          <Property Type="Double" Name="FinalAmount" Nullable="true" />
+          <Property Type="Double" Name="DiscountAmount" Nullable="true" />
+          <Property Type="Double" Name="PayableAmount" Nullable="true" />
+          <Property Type="Double" Name="SaleConversionRate" Nullable="true" />
+          <Property Type="Double" Name="CustomCharge" Nullable="true" />
+          <Property Type="Double" Name="CourierBillAvarage" Nullable="true" />
+          <Property Type="Int32" Name="UltimatePayableAmount" Nullable="true" />
+          <Property Type="String" Name="PurchaseOrderNo" Nullable="true" MaxLength="20" />
+          <Property Type="Double" Name="PurchaseProductPriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="PurchaseShippingCharge" Nullable="true" />
+          <Property Type="Int32" Name="PurchaseProductQty" Nullable="true" />
+          <Property Type="Double" Name="PurchasePriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="PurchasePriceInBDT" Nullable="true" />
+          <Property Type="Double" Name="PurchaseBkashCharge" Nullable="true" />
+          <Property Type="Double" Name="PurchaseCalcAmount" Nullable="true" />
+          <Property Type="Double" Name="PurchaseWeight" Nullable="true" />
+          <Property Type="Double" Name="PurchaseExpressRate" Nullable="true" />
+          <Property Type="Double" Name="PurchaseFinalAmount" Nullable="true" />
+          <Property Type="Double" Name="PurchaseDiscountAmount" Nullable="true" />
+          <Property Type="Double" Name="PurchasePayableAmount" Nullable="true" />
+          <Property Type="String" Name="RelatedSaleOrderNo" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="TotalPaid" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="proc_ViewSaleV4_Result">
+          <Property Type="Int32" Name="Aging" Nullable="true" />
+          <Property Type="Int32" Name="AutoId" Nullable="false" />
+          <Property Type="String" Name="SaleOrderNo" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="RelatedSaleReqNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="ConsumerCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactNo" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="Dob" Nullable="true" />
+          <Property Type="DateTime" Name="SaleOrderPlaceDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="SaleOrderProductCompletionDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DeliveryDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="SaleOrderStatus" Nullable="true" />
+          <Property Type="String" Name="ProcessStatuName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProcessStatusUniqeCode" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="SaleBillAmount" Nullable="true" />
+          <Property Type="String" Name="ReferalResourceUniqueCode" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ServiceId" Nullable="true" />
+          <Property Type="String" Name="ServiceName" Nullable="true" MaxLength="20" />
+          <Property Type="Double" Name="ServiceCharge" Nullable="true" />
+          <Property Type="Int32" Name="SupplierId" Nullable="true" />
+          <Property Type="String" Name="SupplierName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SupplierShortName" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="SupplierStatus" Nullable="true" />
+          <Property Type="String" Name="InsertedBy" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="InsertedByFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="InsertedByLastName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ProductCode" Nullable="true" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductUniqueCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductDescription" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ProductGroupCode" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="ProductSizeId" Nullable="true" />
+          <Property Type="Int32" Name="ProductColorId" Nullable="true" />
+          <Property Type="Int32" Name="ProductTypeId" Nullable="true" />
+          <Property Type="Int32" Name="ProductParentId" Nullable="true" />
+          <Property Type="String" Name="ParentProductName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="SaleOrderedQty" Nullable="true" />
+          <Property Type="Double" Name="SaleUnitPrice" Nullable="true" />
+          <Property Type="Int32" Name="DeliveredQty" Nullable="true" />
+          <Property Type="String" Name="RelatedRefCode" Nullable="true" />
+          <Property Type="String" Name="ProductRemarks" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="SaleProductColorId" Nullable="true" />
+          <Property Type="String" Name="ProductSize" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ProductColorName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ClientId" Nullable="true" />
+          <Property Type="String" Name="ProductBarCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductRelatedChallanId" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="ProductPriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="ShippingCharge" Nullable="true" />
+          <Property Type="Int32" Name="ProductQty" Nullable="true" />
+          <Property Type="Double" Name="PriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="PriceInBDT" Nullable="true" />
+          <Property Type="Double" Name="BkashCharge" Nullable="true" />
+          <Property Type="Double" Name="CalcAmount" Nullable="true" />
+          <Property Type="Double" Name="Weight" Nullable="true" />
+          <Property Type="Double" Name="ExpressRate" Nullable="true" />
+          <Property Type="Double" Name="FinalAmount" Nullable="true" />
+          <Property Type="Double" Name="DiscountAmount" Nullable="true" />
+          <Property Type="Double" Name="PayableAmount" Nullable="true" />
+          <Property Type="Double" Name="SaleConversionRate" Nullable="true" />
+          <Property Type="Double" Name="CustomCharge" Nullable="true" />
+          <Property Type="Double" Name="CourierBillAvarage" Nullable="true" />
+          <Property Type="Int32" Name="UltimatePayableAmount" Nullable="true" />
+          <Property Type="String" Name="PurchaseOrderNo" Nullable="true" MaxLength="20" />
+          <Property Type="Double" Name="PurchaseProductPriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="PurchaseShippingCharge" Nullable="true" />
+          <Property Type="Int32" Name="PurchaseProductQty" Nullable="true" />
+          <Property Type="Double" Name="PurchasePriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="PurchasePriceInBDT" Nullable="true" />
+          <Property Type="Double" Name="PurchaseBkashCharge" Nullable="true" />
+          <Property Type="Double" Name="PurchaseCalcAmount" Nullable="true" />
+          <Property Type="Double" Name="PurchaseWeight" Nullable="true" />
+          <Property Type="Double" Name="PurchaseExpressRate" Nullable="true" />
+          <Property Type="Double" Name="PurchaseFinalAmount" Nullable="true" />
+          <Property Type="Double" Name="PurchaseDiscountAmount" Nullable="true" />
+          <Property Type="Double" Name="PurchasePayableAmount" Nullable="true" />
+          <Property Type="String" Name="RelatedSaleOrderNo" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="TotalPaid" Nullable="true" />
+          <Property Type="Int32" Name="DisputeAmount" Nullable="true" />
+          <Property Type="Int32" Name="DisputReturnPayStatus" Nullable="true" />
+          <Property Type="Int32" Name="TotalReturned" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="proc_ViewSaleV5_Result">
+          <Property Type="Int32" Name="Aging" Nullable="true" />
+          <Property Type="Int32" Name="AutoId" Nullable="false" />
+          <Property Type="String" Name="SaleOrderNo" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="RelatedSaleReqNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="ConsumerCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactNo" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="Dob" Nullable="true" />
+          <Property Type="DateTime" Name="SaleOrderPlaceDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="SaleOrderProductCompletionDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DeliveryDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="SaleOrderStatus" Nullable="true" />
+          <Property Type="String" Name="ProcessStatuName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProcessStatusUniqeCode" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="SaleBillAmount" Nullable="true" />
+          <Property Type="String" Name="ReferalResourceUniqueCode" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ServiceId" Nullable="true" />
+          <Property Type="String" Name="ServiceName" Nullable="true" MaxLength="20" />
+          <Property Type="Double" Name="ServiceCharge" Nullable="true" />
+          <Property Type="Int32" Name="SupplierId" Nullable="true" />
+          <Property Type="String" Name="SupplierName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SupplierShortName" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="SupplierStatus" Nullable="true" />
+          <Property Type="String" Name="InsertedBy" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="InsertedByFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="InsertedByLastName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ProductCode" Nullable="true" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductUniqueCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductDescription" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ProductGroupCode" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="ProductSizeId" Nullable="true" />
+          <Property Type="Int32" Name="ProductColorId" Nullable="true" />
+          <Property Type="Int32" Name="ProductTypeId" Nullable="true" />
+          <Property Type="Int32" Name="ProductParentId" Nullable="true" />
+          <Property Type="String" Name="ParentProductName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="SaleOrderedQty" Nullable="true" />
+          <Property Type="Double" Name="SaleUnitPrice" Nullable="true" />
+          <Property Type="Int32" Name="DeliveredQty" Nullable="true" />
+          <Property Type="String" Name="RelatedRefCode" Nullable="true" />
+          <Property Type="String" Name="ProductRemarks" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="SaleProductColorId" Nullable="true" />
+          <Property Type="String" Name="ProductSize" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ProductColorName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ClientId" Nullable="true" />
+          <Property Type="String" Name="ProductBarCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductRelatedChallanId" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="ProductPriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="ShippingCharge" Nullable="true" />
+          <Property Type="Int32" Name="ProductQty" Nullable="true" />
+          <Property Type="Double" Name="PriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="PriceInBDT" Nullable="true" />
+          <Property Type="Double" Name="BkashCharge" Nullable="true" />
+          <Property Type="Double" Name="CalcAmount" Nullable="true" />
+          <Property Type="Double" Name="Weight" Nullable="true" />
+          <Property Type="Double" Name="ExpressRate" Nullable="true" />
+          <Property Type="Double" Name="FinalAmount" Nullable="true" />
+          <Property Type="Double" Name="DiscountAmount" Nullable="true" />
+          <Property Type="Double" Name="PayableAmount" Nullable="true" />
+          <Property Type="Double" Name="SaleConversionRate" Nullable="true" />
+          <Property Type="Double" Name="CustomCharge" Nullable="true" />
+          <Property Type="Double" Name="CourierBillAvarage" Nullable="true" />
+          <Property Type="Int32" Name="UltimatePayableAmount" Nullable="true" />
+          <Property Type="String" Name="PurchaseOrderNo" Nullable="true" MaxLength="20" />
+          <Property Type="Double" Name="PurchaseProductPriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="PurchaseShippingCharge" Nullable="true" />
+          <Property Type="Int32" Name="PurchaseProductQty" Nullable="true" />
+          <Property Type="Double" Name="PurchasePriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="PurchasePriceInBDT" Nullable="true" />
+          <Property Type="Double" Name="PurchaseBkashCharge" Nullable="true" />
+          <Property Type="Double" Name="PurchaseCalcAmount" Nullable="true" />
+          <Property Type="Double" Name="PurchaseWeight" Nullable="true" />
+          <Property Type="Double" Name="PurchaseExpressRate" Nullable="true" />
+          <Property Type="Double" Name="PurchaseFinalAmount" Nullable="true" />
+          <Property Type="Double" Name="PurchaseDiscountAmount" Nullable="true" />
+          <Property Type="Double" Name="PurchasePayableAmount" Nullable="true" />
+          <Property Type="String" Name="RelatedSaleOrderNo" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="TotalPaid" Nullable="true" />
+          <Property Type="Int32" Name="DisputeAmount" Nullable="true" />
+          <Property Type="Int32" Name="DisputReturnPayStatus" Nullable="true" />
+          <Property Type="Int32" Name="TotalReturned" Nullable="true" />
+          <Property Type="Int32" Name="ProcessStatusActiveState" Nullable="true" />
+          <Property Type="Int32" Name="ProcessSortingOrder" Nullable="true" />
+          <Property Type="String" Name="ProcessTrackingName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="proc_ViewSaleV6_Result">
+          <Property Type="Int32" Name="Aging" Nullable="true" />
+          <Property Type="Int32" Name="AutoId" Nullable="false" />
+          <Property Type="String" Name="SaleOrderNo" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="RelatedSaleReqNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="ConsumerCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactNo" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="Dob" Nullable="true" />
+          <Property Type="DateTime" Name="SaleOrderPlaceDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="SaleOrderProductCompletionDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DeliveryDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="SaleOrderStatus" Nullable="true" />
+          <Property Type="String" Name="ProcessStatuName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProcessStatusUniqeCode" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="SaleBillAmount" Nullable="true" />
+          <Property Type="String" Name="ReferalResourceUniqueCode" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ServiceId" Nullable="true" />
+          <Property Type="String" Name="ServiceName" Nullable="true" MaxLength="20" />
+          <Property Type="Double" Name="ServiceCharge" Nullable="true" />
+          <Property Type="Int32" Name="SupplierId" Nullable="true" />
+          <Property Type="String" Name="SupplierName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SupplierShortName" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="SupplierStatus" Nullable="true" />
+          <Property Type="String" Name="InsertedBy" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="InsertedByFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="InsertedByLastName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ProductCode" Nullable="true" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductUniqueCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductDescription" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="ProductGroupCode" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="ProductSizeId" Nullable="true" />
+          <Property Type="Int32" Name="ProductColorId" Nullable="true" />
+          <Property Type="Int32" Name="ProductTypeId" Nullable="true" />
+          <Property Type="Int32" Name="ProductParentId" Nullable="true" />
+          <Property Type="String" Name="ParentProductName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="SaleOrderedQty" Nullable="true" />
+          <Property Type="Double" Name="SaleUnitPrice" Nullable="true" />
+          <Property Type="Int32" Name="DeliveredQty" Nullable="true" />
+          <Property Type="String" Name="RelatedRefCode" Nullable="true" />
+          <Property Type="String" Name="ProductRemarks" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="SaleProductColorId" Nullable="true" />
+          <Property Type="String" Name="ProductSize" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ProductColorName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ClientId" Nullable="true" />
+          <Property Type="String" Name="ProductBarCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProductRelatedChallanId" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="ProductPriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="ShippingCharge" Nullable="true" />
+          <Property Type="Int32" Name="ProductQty" Nullable="true" />
+          <Property Type="Double" Name="PriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="PriceInBDT" Nullable="true" />
+          <Property Type="Double" Name="BkashCharge" Nullable="true" />
+          <Property Type="Double" Name="CalcAmount" Nullable="true" />
+          <Property Type="Double" Name="Weight" Nullable="true" />
+          <Property Type="Double" Name="ExpressRate" Nullable="true" />
+          <Property Type="Double" Name="FinalAmount" Nullable="true" />
+          <Property Type="Double" Name="DiscountAmount" Nullable="true" />
+          <Property Type="Double" Name="PayableAmount" Nullable="true" />
+          <Property Type="Double" Name="SaleConversionRate" Nullable="true" />
+          <Property Type="Double" Name="CustomCharge" Nullable="true" />
+          <Property Type="Double" Name="CourierBillAvarage" Nullable="true" />
+          <Property Type="Int32" Name="UltimatePayableAmount" Nullable="true" />
+          <Property Type="String" Name="PurchaseOrderNo" Nullable="true" MaxLength="20" />
+          <Property Type="Double" Name="PurchaseProductPriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="PurchaseShippingCharge" Nullable="true" />
+          <Property Type="Int32" Name="PurchaseProductQty" Nullable="true" />
+          <Property Type="Double" Name="PurchasePriceInCurrency" Nullable="true" />
+          <Property Type="Double" Name="PurchasePriceInBDT" Nullable="true" />
+          <Property Type="Double" Name="PurchaseBkashCharge" Nullable="true" />
+          <Property Type="Double" Name="PurchaseCalcAmount" Nullable="true" />
+          <Property Type="Double" Name="PurchaseWeight" Nullable="true" />
+          <Property Type="Double" Name="PurchaseExpressRate" Nullable="true" />
+          <Property Type="Double" Name="PurchaseFinalAmount" Nullable="true" />
+          <Property Type="Double" Name="PurchaseDiscountAmount" Nullable="true" />
+          <Property Type="Double" Name="PurchasePayableAmount" Nullable="true" />
+          <Property Type="String" Name="RelatedSaleOrderNo" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="TotalPaid" Nullable="true" />
+          <Property Type="Int32" Name="DisputeAmount" Nullable="true" />
+          <Property Type="Int32" Name="DisputReturnPayStatus" Nullable="true" />
+          <Property Type="Int32" Name="TotalReturned" Nullable="true" />
+          <Property Type="Int32" Name="ProcessStatusActiveState" Nullable="true" />
+          <Property Type="Int32" Name="ProcessSortingOrder" Nullable="true" />
+          <Property Type="String" Name="ProcessTrackingName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CourierManualChallanNo" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="CourierCharge" Nullable="true" />
+          <Property Type="DateTime" Name="CourierChallanDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CourierDemandAmount" Nullable="true" />
+          <Property Type="DateTime" Name="CourierDeliveryDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="CourierDisputeDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CourierDisputeAmount" Nullable="true" />
+          <Property Type="DateTime" Name="CourierBackDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CourierBackManualChallanNo" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="CarrierId" Nullable="true" />
+          <Property Type="String" Name="CourierConsumerCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="CarrierName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="CarrierShortName" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="CarrierStatus" Nullable="true" />
+          <Property Type="String" Name="Address" Nullable="true" />
+          <Property Type="String" Name="ClientName" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="ClientOrder" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="proc_CustomDashboard_Result">
+          <Property Type="Int32" Name="PeriodicalSale" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalPurchase" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalReceived" Nullable="false" />
+          <Property Type="Int32" Name="TotalSale" Nullable="false" />
+          <Property Type="Int32" Name="TotalReceived" Nullable="false" />
+          <Property Type="Int32" Name="TotalDispute" Nullable="false" />
+          <Property Type="Int32" Name="TotalDue" Nullable="false" />
+          <Property Type="Int32" Name="TotalCourierBill" Nullable="false" />
+          <Property Type="Int32" Name="TotalCourierPaid" Nullable="false" />
+          <Property Type="Int32" Name="TotalCourierDue" Nullable="false" />
+          <Property Type="Int32" Name="TotalBalance" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalClaimedIncome" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalExpense" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalPL" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="proc_CustomDashboardV2_Result">
+          <Property Type="Int32" Name="PeriodicalSale" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalPurchase" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalReceived" Nullable="false" />
+          <Property Type="Int32" Name="TotalSale" Nullable="false" />
+          <Property Type="Int32" Name="TotalReceived" Nullable="false" />
+          <Property Type="Int32" Name="TotalDispute" Nullable="false" />
+          <Property Type="Int32" Name="TotalDue" Nullable="false" />
+          <Property Type="Int32" Name="TotalCourierBill" Nullable="false" />
+          <Property Type="Int32" Name="TotalCourierPaid" Nullable="false" />
+          <Property Type="Int32" Name="TotalCourierDue" Nullable="false" />
+          <Property Type="Int32" Name="TotalBalance" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalClaimedIncome" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalExpense" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalPL" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="proc_CustomDashboardV3_Result">
+          <Property Type="Int32" Name="PeriodicalSale" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalPurchase" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalReceived" Nullable="false" />
+          <Property Type="Int32" Name="TotalSale" Nullable="false" />
+          <Property Type="Int32" Name="TotalReceived" Nullable="false" />
+          <Property Type="Int32" Name="TotalDispute" Nullable="false" />
+          <Property Type="Int32" Name="TotalDue" Nullable="false" />
+          <Property Type="Int32" Name="TotalCourierBill" Nullable="false" />
+          <Property Type="Int32" Name="TotalCourierPaid" Nullable="false" />
+          <Property Type="Int32" Name="TotalCourierDue" Nullable="false" />
+          <Property Type="Int32" Name="TotalBalance" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalClaimedIncome" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalExpense" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalPL" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="proc_CustomDashboardV4_Result">
+          <Property Type="Int32" Name="PeriodicalSale" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalPurchase" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalReceived" Nullable="false" />
+          <Property Type="Int32" Name="TotalSale" Nullable="false" />
+          <Property Type="Int32" Name="TotalReceived" Nullable="false" />
+          <Property Type="Int32" Name="TotalDispute" Nullable="false" />
+          <Property Type="Int32" Name="TotalReturned" Nullable="false" />
+          <Property Type="Int32" Name="TotalDue" Nullable="false" />
+          <Property Type="Int32" Name="TotalCourierBill" Nullable="false" />
+          <Property Type="Int32" Name="TotalCourierPaid" Nullable="false" />
+          <Property Type="Int32" Name="TotalCourierDue" Nullable="false" />
+          <Property Type="Int32" Name="TotalBalance" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalClaimedIncome" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalExpense" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalPL" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="proc_IESummery_Result">
+          <Property Type="Int32" Name="PaymentModeId" Nullable="false" />
+          <Property Type="String" Name="PaymentModeName" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="CalculateOpeningBalance" Nullable="false" />
+          <Property Type="Int32" Name="Income" Nullable="false" />
+          <Property Type="Int32" Name="Expense" Nullable="false" />
+          <Property Type="Int32" Name="CurrentBalance" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="proc_CustomDashboardV5_Result">
+          <Property Type="Int32" Name="PeriodicalSale" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalPurchase" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalReceived" Nullable="false" />
+          <Property Type="Int32" Name="TotalSale" Nullable="false" />
+          <Property Type="Int32" Name="TotalReceived" Nullable="false" />
+          <Property Type="Int32" Name="TotalDispute" Nullable="false" />
+          <Property Type="Int32" Name="TotalReturned" Nullable="false" />
+          <Property Type="Int32" Name="TotalDue" Nullable="false" />
+          <Property Type="Int32" Name="TotalCourierBill" Nullable="false" />
+          <Property Type="Int32" Name="TotalCourierPaid" Nullable="false" />
+          <Property Type="Int32" Name="TotalCourierDue" Nullable="false" />
+          <Property Type="Int32" Name="TotalBalance" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalSOIncome" Nullable="false" />
+          <Property Type="Int32" Name="I" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalPOIncome" Nullable="false" />
+          <Property Type="Int32" Name="E" Nullable="false" />
+          <Property Type="Int32" Name="PL" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="proc_SOBreakdownByDateRange_Result">
+          <Property Type="Int32" Name="ProductSale" Nullable="false" />
+          <Property Type="Int32" Name="bKashCharge" Nullable="true" />
+          <Property Type="Int32" Name="ExpressCharge" Nullable="false" />
+          <Property Type="Int32" Name="CustomCharge" Nullable="false" />
+          <Property Type="Int32" Name="CourierCharge" Nullable="false" />
+          <Property Type="Int32" Name="SaleDiscount" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="proc_TransactionByDateRange_Result">
+          <Property Type="String" Name="TransanctionId" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="RelatedInvoiceNo" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="PaymentAmount" Nullable="true" />
+          <Property Type="Int32" Name="PaymentModeId" Nullable="true" />
+          <Property Type="DateTime" Name="PaymentDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="PaymentConfirmationDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="ChartOfAccountId" Nullable="true" />
+          <Property Type="String" Name="Remarks" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="InsertedBy" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ChartOfAccountName" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="AccountHeadId" Nullable="true" />
+          <Property Type="String" Name="AccountHeadName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="AccountHeadTypeId" Nullable="true" />
+          <Property Type="String" Name="AccountHeadTypeName" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="PaymentModeName" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="PaymentModeIShortName" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="ChartOfAccountStatus" Nullable="true" />
+          <Property Type="Int32" Name="Status" Nullable="true" />
+          <Property Type="Int32" Name="OpeningBalance" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="proc_CustomDashboardV6_Result">
+          <Property Type="Int32" Name="PeriodicalSale" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalPurchase" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalReceived" Nullable="false" />
+          <Property Type="Int32" Name="TotalSale" Nullable="false" />
+          <Property Type="Int32" Name="TotalReceived" Nullable="false" />
+          <Property Type="Int32" Name="TotalDispute" Nullable="false" />
+          <Property Type="Int32" Name="TotalReturned" Nullable="false" />
+          <Property Type="Int32" Name="TotalDue" Nullable="false" />
+          <Property Type="Int32" Name="TotalCourierBill" Nullable="false" />
+          <Property Type="Int32" Name="TotalCourierPaid" Nullable="false" />
+          <Property Type="Int32" Name="TotalCourierDue" Nullable="false" />
+          <Property Type="Int32" Name="TotalBalance" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalSOIncome" Nullable="false" />
+          <Property Type="Int32" Name="I" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalPOIncome" Nullable="false" />
+          <Property Type="Int32" Name="E" Nullable="false" />
+          <Property Type="Int32" Name="PL" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="proc_CustomDashboardV7_Result">
+          <Property Type="Int32" Name="PeriodicalSale" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalPurchase" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalReceived" Nullable="false" />
+          <Property Type="Int32" Name="TotalSale" Nullable="false" />
+          <Property Type="Int32" Name="TotalReceived" Nullable="false" />
+          <Property Type="Int32" Name="TotalDispute" Nullable="false" />
+          <Property Type="Int32" Name="TotalReturned" Nullable="false" />
+          <Property Type="Int32" Name="TotalDue" Nullable="false" />
+          <Property Type="Int32" Name="TotalCourierBill" Nullable="false" />
+          <Property Type="Int32" Name="TotalCourierPaid" Nullable="false" />
+          <Property Type="Int32" Name="TotalCourierDue" Nullable="false" />
+          <Property Type="Int32" Name="TotalBalance" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalSOIncome" Nullable="false" />
+          <Property Type="Int32" Name="I" Nullable="false" />
+          <Property Type="Int32" Name="PeriodicalPOIncome" Nullable="false" />
+          <Property Type="Int32" Name="E" Nullable="false" />
+          <Property Type="Int32" Name="PL" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="proc_ViewConsumerOrderStatusPivotReport_Result">
+          <Property Type="String" Name="ConsumerCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="101" />
+          <Property Type="String" Name="ContactNo" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="TotalOrder" Nullable="true" />
+          <Property Type="Int32" Name="WaitingForShipment" Nullable="false" />
+          <Property Type="Int32" Name="ChinaWarehouseReceivePending" Nullable="false" />
+          <Property Type="Int32" Name="ShipmentPendingfromChinaWarehouse" Nullable="false" />
+          <Property Type="Int32" Name="ReadyForDelivery" Nullable="false" />
+          <Property Type="Int32" Name="OnTransittoCustomer" Nullable="false" />
+          <Property Type="Int32" Name="DisputedApplied" Nullable="false" />
+          <Property Type="Int32" Name="Delivered" Nullable="false" />
+          <Property Type="Int32" Name="Refunded" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="proc1_ViewConsumerOrderStatusPivotReport_Result">
+          <Property Type="String" Name="ConsumerCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="101" />
+          <Property Type="String" Name="ContactNo" Nullable="true" MaxLength="20" />
+          <Property Type="Int32" Name="TotalOrder" Nullable="true" />
+          <Property Type="Int32" Name="WaitingForShipment" Nullable="false" />
+          <Property Type="Int32" Name="ChinaWarehouseReceivePending" Nullable="false" />
+          <Property Type="Int32" Name="ShipmentPendingfromChinaWarehouse" Nullable="false" />
+          <Property Type="Int32" Name="ReceiveInBDWarehouse" Nullable="false" />
+          <Property Type="Int32" Name="ReadyForDelivery" Nullable="false" />
+          <Property Type="Int32" Name="OnTransittoCustomer" Nullable="false" />
+          <Property Type="Int32" Name="DisputedApplied" Nullable="false" />
+          <Property Type="Int32" Name="Delivered" Nullable="false" />
+          <Property Type="Int32" Name="Refunded" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="tbl_Candidate">
+          <Key>
+            <PropertyRef Name="CandidateId" />
+          </Key>
+          <Property Name="AutoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CandidateId" Type="Int32" Nullable="false" />
+          <Property Name="CandidateCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CandidateName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CandidateContactNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CandidateAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CandidateDOB" Type="DateTime" Precision="3" />
+          <Property Name="CandidateGender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CandidateGuardianName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CandidateGurdianContact" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CandidateImageRef" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_CandidateDocument">
+          <Key>
+            <PropertyRef Name="AutoId" />
+          </Key>
+          <Property Name="AutoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CandidateId" Type="Int32" Nullable="false" />
+          <Property Name="DocumentId" Type="Int32" />
+          <Property Name="DocumentKey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="DocumentImageRef" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentOrgImageRef" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_CandidateJobHistory">
+          <Key>
+            <PropertyRef Name="AutoId" />
+          </Key>
+          <Property Name="AutoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CandidateId" Type="Int32" Nullable="false" />
+          <Property Name="JobTrade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JobDuration" Type="Int32" />
+          <Property Name="JobCompany" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CountryId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_CandidateSkill">
+          <Key>
+            <PropertyRef Name="AutoId" />
+          </Key>
+          <Property Name="AutoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CandidateId" Type="Int32" Nullable="false" />
+          <Property Name="SkillId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_Country">
+          <Key>
+            <PropertyRef Name="CountryId" />
+          </Key>
+          <Property Name="AutoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryId" Type="Int32" Nullable="false" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CountryShortName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CountryStatus" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_Document">
+          <Key>
+            <PropertyRef Name="DocumentId" />
+          </Key>
+          <Property Name="AutoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentId" Type="Int32" Nullable="false" />
+          <Property Name="DocumentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_Skill">
+          <Key>
+            <PropertyRef Name="SkillId" />
+          </Key>
+          <Property Name="AutoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SkillId" Type="Int32" Nullable="false" />
+          <Property Name="SkillName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SkillOrder" Type="Int32" />
+          <Property Name="SkillStatus" Type="Int32" />
+          <Property Name="CountryId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="View_Candidate">
+          <Key>
+            <PropertyRef Name="AutoId" />
+            <PropertyRef Name="CandidateId" />
+          </Key>
+          <Property Name="AutoId" Type="Int32" Nullable="false" />
+          <Property Name="CandidateId" Type="Int32" Nullable="false" />
+          <Property Name="CandidateCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CandidateName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CandidateContactNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CandidateAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CandidateDOB" Type="DateTime" Precision="3" />
+          <Property Name="CandidateGender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CandidateGuardianName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CandidateGurdianContact" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CandidateImageRef" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="JobTrade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JobDuration" Type="Int32" />
+          <Property Name="JobCompany" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SkillId" Type="Int32" />
+          <Property Name="SkillName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentId" Type="Int32" />
+          <Property Name="DocumentKey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="DocumentImageRef" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentOrgImageRef" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CountryId" Type="Int32" />
+          <Property Name="CountryName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CountryShortName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="JobCountryName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="JobCountryShortName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_201_User">
+          <Key>
+            <PropertyRef Name="Username" />
+          </Key>
+          <Property Name="AutoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StakeHolderUniqueCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UserRoleId" Type="Int32" />
+          <Property Name="UserStatus" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_Stakeholder">
+          <Key>
+            <PropertyRef Name="StakeHolderUniqueCode" />
+          </Key>
+          <Property Name="AutoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StakeHolderUniqueCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Dob" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GuardianFullName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GuardianContact" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="RelationTypeId" Type="Int32" />
+          <Property Name="StakeHolderTypeId" Type="Int32" />
+          <Property Name="RefStakeHolderUniqueCode" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ClientId" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tbl_StakeholderType">
+          <Key>
+            <PropertyRef Name="StakeHolderTypeId" />
+          </Key>
+          <Property Name="AutoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StakeHolderTypeId" Type="Int32" Nullable="false" />
+          <Property Name="StakeHolderTypeName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="InsertedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ClientId" Type="Int32" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="logisticmgtModelStoreContainer" CdmEntityContainer="dataEntities">
+          <EntitySetMapping Name="tbl_Candidate">
+            <EntityTypeMapping TypeName="logisticmgtModel.tbl_Candidate">
+              <MappingFragment StoreEntitySet="tbl_Candidate">
+                <ScalarProperty Name="CandidateImageRef" ColumnName="CandidateImageRef" />
+                <ScalarProperty Name="CandidateGurdianContact" ColumnName="CandidateGurdianContact" />
+                <ScalarProperty Name="CandidateGuardianName" ColumnName="CandidateGuardianName" />
+                <ScalarProperty Name="CandidateGender" ColumnName="CandidateGender" />
+                <ScalarProperty Name="CandidateDOB" ColumnName="CandidateDOB" />
+                <ScalarProperty Name="CandidateAddress" ColumnName="CandidateAddress" />
+                <ScalarProperty Name="CandidateContactNo" ColumnName="CandidateContactNo" />
+                <ScalarProperty Name="CandidateName" ColumnName="CandidateName" />
+                <ScalarProperty Name="CandidateCode" ColumnName="CandidateCode" />
+                <ScalarProperty Name="CandidateId" ColumnName="CandidateId" />
+                <ScalarProperty Name="AutoId" ColumnName="AutoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CandidateDocument">
+            <EntityTypeMapping TypeName="logisticmgtModel.tbl_CandidateDocument">
+              <MappingFragment StoreEntitySet="tbl_CandidateDocument">
+                <ScalarProperty Name="DocumentOrgImageRef" ColumnName="DocumentOrgImageRef" />
+                <ScalarProperty Name="DocumentImageRef" ColumnName="DocumentImageRef" />
+                <ScalarProperty Name="DocumentExpiryDate" ColumnName="DocumentExpiryDate" />
+                <ScalarProperty Name="DocumentKey" ColumnName="DocumentKey" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+                <ScalarProperty Name="CandidateId" ColumnName="CandidateId" />
+                <ScalarProperty Name="AutoId" ColumnName="AutoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CandidateJobHistory">
+            <EntityTypeMapping TypeName="logisticmgtModel.tbl_CandidateJobHistory">
+              <MappingFragment StoreEntitySet="tbl_CandidateJobHistory">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="JobCompany" ColumnName="JobCompany" />
+                <ScalarProperty Name="JobDuration" ColumnName="JobDuration" />
+                <ScalarProperty Name="JobTrade" ColumnName="JobTrade" />
+                <ScalarProperty Name="CandidateId" ColumnName="CandidateId" />
+                <ScalarProperty Name="AutoId" ColumnName="AutoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_CandidateSkill">
+            <EntityTypeMapping TypeName="logisticmgtModel.tbl_CandidateSkill">
+              <MappingFragment StoreEntitySet="tbl_CandidateSkill">
+                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
+                <ScalarProperty Name="CandidateId" ColumnName="CandidateId" />
+                <ScalarProperty Name="AutoId" ColumnName="AutoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Country">
+            <EntityTypeMapping TypeName="logisticmgtModel.tbl_Country">
+              <MappingFragment StoreEntitySet="tbl_Country">
+                <ScalarProperty Name="CountryStatus" ColumnName="CountryStatus" />
+                <ScalarProperty Name="CountryShortName" ColumnName="CountryShortName" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="AutoId" ColumnName="AutoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Document">
+            <EntityTypeMapping TypeName="logisticmgtModel.tbl_Document">
+              <MappingFragment StoreEntitySet="tbl_Document">
+                <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+                <ScalarProperty Name="AutoId" ColumnName="AutoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Skill">
+            <EntityTypeMapping TypeName="logisticmgtModel.tbl_Skill">
+              <MappingFragment StoreEntitySet="tbl_Skill">
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="SkillStatus" ColumnName="SkillStatus" />
+                <ScalarProperty Name="SkillOrder" ColumnName="SkillOrder" />
+                <ScalarProperty Name="SkillName" ColumnName="SkillName" />
+                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
+                <ScalarProperty Name="AutoId" ColumnName="AutoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Candidate">
+            <EntityTypeMapping TypeName="logisticmgtModel.View_Candidate">
+              <MappingFragment StoreEntitySet="View_Candidate">
+                <ScalarProperty Name="JobCountryShortName" ColumnName="JobCountryShortName" />
+                <ScalarProperty Name="JobCountryName" ColumnName="JobCountryName" />
+                <ScalarProperty Name="CountryShortName" ColumnName="CountryShortName" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
+                <ScalarProperty Name="DocumentOrgImageRef" ColumnName="DocumentOrgImageRef" />
+                <ScalarProperty Name="DocumentImageRef" ColumnName="DocumentImageRef" />
+                <ScalarProperty Name="DocumentExpiryDate" ColumnName="DocumentExpiryDate" />
+                <ScalarProperty Name="DocumentKey" ColumnName="DocumentKey" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+                <ScalarProperty Name="SkillName" ColumnName="SkillName" />
+                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
+                <ScalarProperty Name="JobCompany" ColumnName="JobCompany" />
+                <ScalarProperty Name="JobDuration" ColumnName="JobDuration" />
+                <ScalarProperty Name="JobTrade" ColumnName="JobTrade" />
+                <ScalarProperty Name="CandidateImageRef" ColumnName="CandidateImageRef" />
+                <ScalarProperty Name="CandidateGurdianContact" ColumnName="CandidateGurdianContact" />
+                <ScalarProperty Name="CandidateGuardianName" ColumnName="CandidateGuardianName" />
+                <ScalarProperty Name="CandidateGender" ColumnName="CandidateGender" />
+                <ScalarProperty Name="CandidateDOB" ColumnName="CandidateDOB" />
+                <ScalarProperty Name="CandidateAddress" ColumnName="CandidateAddress" />
+                <ScalarProperty Name="CandidateContactNo" ColumnName="CandidateContactNo" />
+                <ScalarProperty Name="CandidateName" ColumnName="CandidateName" />
+                <ScalarProperty Name="CandidateCode" ColumnName="CandidateCode" />
+                <ScalarProperty Name="CandidateId" ColumnName="CandidateId" />
+                <ScalarProperty Name="AutoId" ColumnName="AutoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_201_User">
+            <EntityTypeMapping TypeName="logisticmgtModel.tbl_201_User">
+              <MappingFragment StoreEntitySet="tbl_201_User">
+                <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
+                <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
+                <ScalarProperty Name="StakeHolderUniqueCode" ColumnName="StakeHolderUniqueCode" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="AutoId" ColumnName="AutoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Stakeholder">
+            <EntityTypeMapping TypeName="logisticmgtModel.tbl_Stakeholder">
+              <MappingFragment StoreEntitySet="tbl_Stakeholder">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="InsertedBy" ColumnName="InsertedBy" />
+                <ScalarProperty Name="RefStakeHolderUniqueCode" ColumnName="RefStakeHolderUniqueCode" />
+                <ScalarProperty Name="StakeHolderTypeId" ColumnName="StakeHolderTypeId" />
+                <ScalarProperty Name="RelationTypeId" ColumnName="RelationTypeId" />
+                <ScalarProperty Name="GuardianContact" ColumnName="GuardianContact" />
+                <ScalarProperty Name="GuardianFullName" ColumnName="GuardianFullName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="StakeHolderUniqueCode" ColumnName="StakeHolderUniqueCode" />
+                <ScalarProperty Name="AutoId" ColumnName="AutoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_StakeholderType">
+            <EntityTypeMapping TypeName="logisticmgtModel.tbl_StakeholderType">
+              <MappingFragment StoreEntitySet="tbl_StakeholderType">
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="InsertedBy" ColumnName="InsertedBy" />
+                <ScalarProperty Name="StakeHolderTypeName" ColumnName="StakeHolderTypeName" />
+                <ScalarProperty Name="StakeHolderTypeId" ColumnName="StakeHolderTypeId" />
+                <ScalarProperty Name="AutoId" ColumnName="AutoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

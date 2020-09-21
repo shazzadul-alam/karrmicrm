@@ -1,0 +1,155 @@
+﻿@model IEnumerable<LogisticManagement.Models.View_Candidate>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Candidate Data</h2>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<table id="example" class="display nowrap" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+               Code
+            </th>
+            <th>
+               Full Name
+            </th>
+            <th>
+               Contact
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                DOB
+            </th>
+            <th>
+                Gender
+            </th>
+            <th>
+                Guardian Name
+            </th>
+            <th>
+                Guardian Contact
+            </th>
+            <th>
+               Job Trade
+            </th>
+            <th>
+                Job Duration
+            </th>
+            <th>
+                Job Company
+            </th>
+            <th>
+               Skill
+            </th>
+            <th>
+               Doc Key
+            </th>
+            <th>
+               Expiry Date
+            </th>
+            <th>
+               Doc Name
+            </th>
+
+            <th>
+               Country
+            </th>
+
+            <th>
+              Job Country
+            </th>
+            @*<th></th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CandidateCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CandidateName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CandidateContactNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CandidateAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CandidateDOB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CandidateGender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CandidateGuardianName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CandidateGurdianContact)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobTrade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobDuration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobCompany)
+                </td>
+              
+                <td>
+                    @Html.DisplayFor(modelItem => item.SkillName)
+                </td>
+              
+                <td>
+                    @Html.DisplayFor(modelItem => item.DocumentKey)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DocumentExpiryDate)
+                </td>
+             
+                <td>
+                    @Html.DisplayFor(modelItem => item.DocumentName)
+                </td>
+             
+                <td>
+                    @Html.DisplayFor(modelItem => item.CountryName)
+                </td>
+              
+                <td>
+                    @Html.DisplayFor(modelItem => item.JobCountryName)
+                </td>
+              
+                @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>*@
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#example').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel'
+            ]
+        });
+    });
+</script>
