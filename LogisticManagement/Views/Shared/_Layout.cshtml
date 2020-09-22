@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - MYBD STORE</title>
+    <title>@ViewBag.Title - KARRMI</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -24,7 +24,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 @*<img style="height:50px; width:50px;" src="~/Content/img/company_logo.jpg" />*@
-                @Html.ActionLink("ORDER UPDATE", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("KARRMI", "Index", "View_Candidate", new { area = "" }, new { @class = "navbar-brand" })
                 @*<span class="navbar-brand">ORDER UPDATE</span>*@
             </div>
             <div class="navbar-collapse collapse">
@@ -42,7 +42,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <span style="text-align:right; float: left;"><a href="http://mybdstore.com/" target="_blank"> &copy; MYBD STORE</a></span>
+            <span style="text-align:right; float: left;"><a href="http://ermsbd.com" target="_blank"> &copy; KARRMI</a></span>
             <span style="text-align:right; float: right;">developed by <a href="http://algotech.com.bd/" target="_blank">AlgoTech Solution Ltd.</a></span>
         </footer>
     </div>
@@ -127,7 +127,7 @@
             menuContent += '<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Backend Data</a>';
             menuContent += '<ul class="dropdown-menu">';
             menuContent += '<li>@Html.ActionLink("Manage Trade", "Index", "ViewSkill")</li>';
-            menuContent += '<li>@Html.ActionLink("Trade", "Index", "ViewSkill")</li>';
+            menuContent += '<li>@Html.ActionLink("Manage Country", "Index", "tbl_Country")</li>';
             menuContent += '</ul></li>';
 
             menuContent += '<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">Report</a>';

@@ -19,7 +19,7 @@ namespace LogisticManagement.Controllers
         // GET: ViewSkill
         public ActionResult Index()
         {
-            return View(db.View_Skill.ToList());
+            return View(db.View_Skill.Where(c=> c.SkillStatus != 0).ToList());
         }
 
         // GET: ViewSkill/Details/5
@@ -94,6 +94,9 @@ namespace LogisticManagement.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.Country = db.tbl_Country.Where(c => c.CountryStatus == 1)
+                                  .OrderBy(c => c.CountryName).ToList();
             return View(tbl_Skill);
         }
 
@@ -102,15 +105,15 @@ namespace LogisticManagement.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AutoId,SkillId,SkillName,SkillOrder,SkillStatus,CountryId,CountryName,CountryShortName,CountryStatus")] View_Skill view_Skill)
+        public ActionResult Edit([Bind(Include = "AutoId,SkillId,SkillName,SkillOrder,SkillStatus,CountryId")] tbl_Skill tbl_Skill)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(view_Skill).State = EntityState.Modified;
+                db.Entry(tbl_Skill).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(view_Skill);
+            return View(tbl_Skill);
         }
 
         // GET: ViewSkill/Delete/5
